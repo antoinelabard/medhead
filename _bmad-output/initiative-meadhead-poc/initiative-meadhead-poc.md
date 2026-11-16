@@ -29,8 +29,8 @@ Le comité d'architecture dispose d'une preuve fonctionnelle et mesurée qu'un s
 - R2 (exigences §Scénario): quand un hôpital est recommandé, un événement de réservation de lit est publié et observable par un consommateur.
 - R3 (mission §Back-end, Points de vigilance): la proximité se mesure en distance réellement à parcourir, pas à vol d'oiseau ; un cas où le plus proche à vol d'oiseau n'est pas le plus proche par la route le démontre.
 - R4 (nhs): les spécialités sélectionnables sont celles des Données de référence NHS (groupe et spécialité) ; une spécialité hors liste est refusée avec une erreur explicite.
-- R5 (exigences §Exigences, interface): une page web unique permet de choisir une spécialité, de saisir la localisation et d'afficher l'hôpital recommandé renvoyé par l'API.
-- R6 (exigences §Exigences, protection ; dda §Contraintes): les données du patient transmises sont protégées en transit et seuls des appelants authentifiés obtiennent une recommandation ; un appel non authentifié est refusé.
+- R5 (exigences §Exigences, interface ; Decision 2026-11-16): une page web unique permet de choisir une spécialité, de saisir la localisation en coordonnées GPS (ou via la géolocalisation du navigateur) et d'afficher l'hôpital recommandé renvoyé par l'API.
+- R6 (exigences §Exigences, protection ; dda §Contraintes ; Decision 2026-11-16): seules la spécialité et la localisation de l'urgence sont transmises, sans identité du patient ni conservation ; elles sont protégées en transit et seuls des appelants authentifiés obtiennent une recommandation ; un appel non authentifié est refusé.
 - R7 (exigences §Exigences, tests ; principes B4, C4-V): la PoC est validée par une pyramide de tests unitaires, d'intégration et E2E, les critères d'acceptation métier écrits en scénarios BDD dans le langage du domaine.
 - R8 (exigences §Déclaration, §Exigences, tests): un test de stress montre un temps de réponse inférieur à 200 ms jusqu'à 800 requêtes par seconde par instance de service, avec un rapport de mesures.
 - R9 (exigences §Exigences, CI/CD ; principes B3, C4-VI ; mission §CI/CD): un pipeline CI/CD se déclenche sur les push et les PR, découpé en étapes distinctes (tests, build, images), et conserve des rapports d'exécution des tests inspectables.
@@ -38,6 +38,7 @@ Le comité d'architecture dispose d'une preuve fonctionnelle et mesurée qu'un s
 - R11 (exigences §Exigences, reporting ; mission §Reporting): un document de reporting justifie les technologies, le respect des normes (RGPD) et des principes, et présente les résultats, les métriques de temps d'exécution de l'API et les enseignements.
 - R12 (exigences §Exigences, bloc de construction ; déclaration §Continuum): la PoC sert de bloc de construction ou de modèle : contrat d'API publié en OpenAPI, code partageable, stratégie de test et pipeline réutilisables.
 - R13 (déclaration §Contenu de l'architecture ; principes B1): quand un service auxiliaire factice est indisponible, l'API répond dans le délai avec une erreur explicite ou un résultat dégradé, démontré par un test avec le service coupé.
+- R14 (Decision 2026-11-16 ; principes A4): quand aucun hôpital n'offre la spécialité avec un lit disponible, l'API renvoie une réponse explicite avec son motif et ne publie aucun événement ; à distance égale, l'hôpital ayant le plus de lits disponibles l'emporte, puis l'ordre alphabétique.
 
 ## Constraints
 
@@ -52,6 +53,9 @@ Le comité d'architecture dispose d'une preuve fonctionnelle et mesurée qu'un s
 - Données patient traitées conformément au RGPD (dda §Contraintes ; principes A3).
 - Les services auxiliaires peuvent être factices avec des contrats simplifiés, lacunes documentées (déclaration §Simplifications suggérées ; mission §Back-end).
 - Le pipeline ne déploie pas la PoC en production sur un cloud (mission §CI/CD).
+- Authentification par jeton JWT émis par un fournisseur d'identité factice conteneurisé, préfigurant l'intégration OIDC de la cible ; transport HTTPS (principes C3 ; Decision 2026-11-16).
+- Le document de reporting et les documents d'architecture vivent dans un dépôt GitHub d'architecture séparé ; ce dépôt-ci contient le code, la CI, les tests et le readme (mission §Livrables ; Decision 2026-11-16).
+- Backend Spring Boot ; tests de charge JMeter contre l'image Docker (mission §Back-end ; Decision 2026-11-16).
 
 ## Done when
 
@@ -67,6 +71,8 @@ Le comité d'architecture dispose d'une preuve fonctionnelle et mesurée qu'un s
 - Hors périmètre : toute donnée patient réelle et tout déploiement en production ou sur un cloud.
 - Hors périmètre : un visuel élaboré ; la page reste simple et fonctionnelle (mission §Front-end).
 - Les systèmes auxiliaires (disponibilité des lits, spécialités des hôpitaux) sont factices.
+- Touch point: dépôt GitHub d'architecture séparé — reçoit les documents de `specs/` et le document de reporting (R11) ; owner : à attribuer au découpage.
+- Hors backlog : la présentation au comité d'architecture.
 - Parcours traceur : l'utilisateur choisit une spécialité et saisit une localisation dans la page Angular → l'API REST interroge les données hospitalières factices et calcule les distances routières → l'hôpital recommandé s'affiche et un événement de réservation de lit est publié.
 
 ## References
@@ -83,15 +89,11 @@ Le comité d'architecture dispose d'une preuve fonctionnelle et mesurée qu'un s
 - Decision: 2026-11-16 — périmètre limité à la PoC décrite dans le document des exigences ; les autres documents de `specs/` sont contexte et contraintes.
 - Decision: 2026-11-16 — stack : Java (API REST), Angular, Docker, GitHub (issues, PR, CI).
 - Decision: 2026-11-16 — workflow Git : Gitflow (`main`, `develop`, branches de travail préfixées issues de `develop`).
-- Assumption: backend Spring Boot, recommandé par la mission.
-- Assumption: jeu de données d'hôpitaux fictifs situés au Royaume-Uni, incluant les trois hôpitaux du scénario.
-- Assumption: les objectifs métier (plus de 90 % d'acheminements corrects, 18,25 → 12 min) ne sont pas mesurables par la PoC ; elle démontre le comportement qui y contribue et le reporting en discute.
-- Assumption: tests de stress avec JMeter contre l'image Docker, rapport versionné.
-- Assumption: la présentation au comité d'architecture est hors backlog.
+- Decision: 2026-11-16 — localisation saisie en coordonnées GPS, manuelle ou via la géolocalisation du navigateur ; pas de géocodage dans le chemin critique.
+- Decision: 2026-11-16 — données minimales (spécialité et localisation, sans identité ni conservation) ; API protégée par JWT émis par un fournisseur d'identité factice ; HTTPS.
+- Decision: 2026-11-16 — aucun hôpital convenable : réponse explicite, aucun événement ; égalité départagée par le nombre de lits puis l'ordre alphabétique.
+- Decision: 2026-11-16 — dépôt d'architecture séparé pour les documents et le reporting.
+- Decision: 2026-11-16 — pas d'échéance fixe.
+- Decision: 2026-11-16 — confirmés : Spring Boot ; hôpitaux fictifs au Royaume-Uni incluant les trois du scénario ; objectifs métier (90 %, 18,25 → 12 min) non mesurés par la PoC, discutés dans le reporting ; tests de charge JMeter contre l'image Docker ; présentation au comité hors backlog.
 - Open question: source des distances routières — service de routage externe ou service factice à distances pré-calculées ? Attend l'architecture.
-- Open question: format de la localisation saisie — adresse, code postal ou coordonnées GPS ?
-- Open question: quelles données patient la PoC traite-t-elle, et quel mécanisme d'authentification (OIDC simulé, jeton, clé API) ?
-- Open question: que renvoie l'API quand aucun hôpital ne convient (aucun lit, spécialité absente) et en cas d'égalité de distance ?
-- Open question: le dépôt d'architecture demandé par la mission (documents et reporting) est-il un dépôt séparé ou un dossier de ce dépôt ?
 - Open question: bus d'événements réel (Kafka, RabbitMQ) ou publication simulée pour l'événement de réservation ? Attend l'architecture.
-- Open question: quelle est l'échéance du délai imparti ?
