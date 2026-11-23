@@ -8,6 +8,7 @@ sources:
   - specs/Principes_de_l_architecture.md
   - specs/Declaration_des_travaux_d_architecture.md
   - specs/Document_de_definition_de_l_architecture.md
+  - _bmad-output/initiative-meadhead-plateforme/initiative-meadhead-plateforme.md
 companions:
   - specs/Données_de_référence_sur_les_spécialités_NHS.md
 risk: medium
@@ -39,6 +40,7 @@ Le comité d'architecture dispose d'une preuve fonctionnelle et mesurée qu'un s
 - R12 (exigences §Exigences, bloc de construction ; déclaration §Continuum): la PoC sert de bloc de construction ou de modèle : contrat d'API publié en OpenAPI, code partageable, stratégie de test et pipeline réutilisables.
 - R13 (déclaration §Contenu de l'architecture ; principes B1): quand un service auxiliaire factice est indisponible, l'API répond dans le délai avec une erreur explicite ou un résultat dégradé, démontré par un test avec le service coupé.
 - R14 (Decision 2026-11-16 ; principes A4): quand aucun hôpital n'offre la spécialité avec un lit disponible, l'API renvoie une réponse explicite avec son motif et ne publie aucun événement ; à distance égale, l'hôpital ayant le plus de lits disponibles l'emporte, puis l'ordre alphabétique.
+- R15 (exigences §Déclaration ; principes B1 ; Decision 2026-11-23): pendant un test de charge, la latence (p95, p99), le débit et le taux d'erreur de l'API sont visibles en temps réel sur un tableau de bord et comparés aux seuils de 200 ms et 800 requêtes par seconde.
 
 ## Constraints
 
@@ -56,6 +58,7 @@ Le comité d'architecture dispose d'une preuve fonctionnelle et mesurée qu'un s
 - Authentification par jeton JWT émis par un fournisseur d'identité factice conteneurisé, préfigurant l'intégration OIDC de la cible ; transport HTTPS (principes C3 ; Decision 2026-11-16).
 - Le document de reporting et les documents d'architecture vivent dans un dépôt GitHub d'architecture séparé ; ce dépôt-ci contient le code, la CI, les tests et le readme (mission §Livrables ; Decision 2026-11-16).
 - Backend Spring Boot ; tests de charge JMeter contre l'image Docker (mission §Back-end ; Decision 2026-11-16).
+- La supervision tourne dans ses propres conteneurs, séparés de l'API dont les ressources sont limitées, pour ne pas fausser la mesure par instance (Decision 2026-11-23).
 
 ## Done when
 
@@ -71,7 +74,7 @@ Le comité d'architecture dispose d'une preuve fonctionnelle et mesurée qu'un s
 - Hors périmètre : toute donnée patient réelle et tout déploiement en production ou sur un cloud.
 - Hors périmètre : un visuel élaboré ; la page reste simple et fonctionnelle (mission §Front-end).
 - Les systèmes auxiliaires (disponibilité des lits, spécialités des hôpitaux) sont factices.
-- Touch point: dépôt GitHub d'architecture séparé — reçoit les documents de `specs/` et le document de reporting (R11) ; owner : à attribuer au découpage.
+- Touch point: dépôt GitHub d'architecture séparé — reçoit les documents de `specs/` et le document de reporting (R11) ; owner : epic-documentation-reporting.
 - Hors backlog : la présentation au comité d'architecture.
 - Parcours traceur : l'utilisateur choisit une spécialité et saisit une localisation dans la page Angular → l'API REST interroge les données hospitalières factices et calcule les distances routières → l'hôpital recommandé s'affiche et un événement de réservation de lit est publié.
 
@@ -95,5 +98,8 @@ Le comité d'architecture dispose d'une preuve fonctionnelle et mesurée qu'un s
 - Decision: 2026-11-16 — dépôt d'architecture séparé pour les documents et le reporting.
 - Decision: 2026-11-16 — pas d'échéance fixe.
 - Decision: 2026-11-16 — confirmés : Spring Boot ; hôpitaux fictifs au Royaume-Uni incluant les trois du scénario ; objectifs métier (90 %, 18,25 → 12 min) non mesurés par la PoC, discutés dans le reporting ; tests de charge JMeter contre l'image Docker ; présentation au comité hors backlog.
+- Decision: 2026-11-23 — la PoC s'inscrit sous `initiative-meadhead-plateforme` ; supervision de performance (Prometheus, Grafana) ajoutée (R15), la preuve reste le rapport JMeter.
+- Decision: 2026-11-23 — découpage en 5 epics approuvé ; sécurité intégrée aux epics 2 et 3 ; tenue en charge en epic séparé (R8, R15) ; dépôt d'architecture rattaché à l'epic 5.
+- Decision: 2026-11-23 — le test de charge se lance hors CI ; chaque epic écrit sa propre section du readme, pour éviter les collisions entre les epics 3 et 4.
 - Open question: source des distances routières — service de routage externe ou service factice à distances pré-calculées ? Attend l'architecture.
 - Open question: bus d'événements réel (Kafka, RabbitMQ) ou publication simulée pour l'événement de réservation ? Attend l'architecture.
