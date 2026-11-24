@@ -1,0 +1,40 @@
+# Épics de l'initiative initiative-meadhead-poc, dans l'ordre de construction.
+
+[[epic]]
+id = 1
+slug = "epic-socle-plateforme"
+title = "Socle de la PoC livré en conteneurs par un pipeline GitHub"
+description = "Les squelettes Spring Boot et Angular se buildent en images Docker, démarrent ensemble en une commande, et chaque push ou PR déclenche un pipeline GitHub Actions (tests, build, images) qui archive ses rapports ; le readme décrit build, exécution, pipeline et workflow Gitflow."
+covers = ["R9", "R10", "R12"]
+
+[[epic]]
+id = 2
+slug = "epic-recommandation-hopital"
+title = "L'API recommande l'hôpital compétent le plus proche par la route et réserve un lit"
+description = "Un appelant authentifié par JWT envoie une spécialité NHS et des coordonnées GPS ; l'API, décrite en OpenAPI, renvoie l'hôpital le plus proche par la route avec un lit disponible, publie l'événement de réservation, répond explicitement quand rien ne convient ou qu'un service factice tombe ; scénarios BDD verts en CI."
+covers = ["R1", "R2", "R3", "R4", "R6", "R7", "R12", "R13", "R14"]
+after = [{ epic = 1, needs = "les squelettes, l'image Docker de l'API et le pipeline CI" }]
+
+[[epic]]
+id = 3
+slug = "epic-page-recherche"
+title = "Une page Angular obtient la recommandation et l'affiche"
+description = "Sur une page unique, l'utilisateur authentifié choisit une spécialité NHS, saisit ou géolocalise ses coordonnées GPS et voit l'hôpital recommandé ou le motif d'absence ; le scénario Fred Brooks passe en E2E dans la CI."
+covers = ["R5", "R6", "R7"]
+after = [{ epic = 2, needs = "le contrat OpenAPI, l'API déployable et le fournisseur d'identité factice" }]
+
+[[epic]]
+id = 4
+slug = "epic-tenue-en-charge"
+title = "La tenue en charge de l'API est prouvée et mesurée"
+description = "Un plan JMeter versionné, joué hors CI contre l'image Docker d'une instance de l'API, montre moins de 200 ms jusqu'à 800 requêtes par seconde et produit un rapport de mesures réutilisé par le reporting ; Prometheus et Grafana, dans leurs propres conteneurs, affichent en direct latence p95/p99, débit et erreurs face aux seuils."
+covers = ["R8", "R15"]
+after = [{ epic = 2, needs = "l'API de recommandation complète en image Docker" }]
+
+[[epic]]
+id = 5
+slug = "epic-documentation-reporting"
+title = "Le readme final et le dépôt d'architecture avec le reporting sont livrés"
+description = "Le readme est complété (tests, pipeline, workflow Git réutilisable) et un dépôt GitHub d'architecture séparé contient les documents de specs/ et le document de reporting : justifications techniques, RGPD et principes, résultats, métriques JMeter, enseignements."
+covers = ["R10", "R11", "R12"]
+after = [{ epic = 3, needs = "le parcours complet et ses résultats de tests" }, { epic = 4, needs = "le rapport de mesures de charge" }]

@@ -1,0 +1,16 @@
+# Initiatives enfants de initiative-meadhead-plateforme, dans l'ordre de construction.
+
+[[initiative]]
+id = 1
+slug = "initiative-meadhead-poc"
+title = "Les intervenants d'urgence obtiennent en temps réel l'hôpital compétent le plus proche disposant d'un lit"
+description = "La PoC est livrée et validée par le comité d'architecture : API, page Angular, tests, tenue en charge, CI/CD Docker, readme et reporting."
+covers = ["R1"]
+
+[[initiative]]
+id = 2
+slug = "initiative-socle-production"
+title = "Les nouveaux microservices s'ajoutent sur un socle sécurisé, redondant et supervisé"
+description = "Passerelle API, IAM OIDC, base de données redondante avec sauvegardes et réplicas en lecture, Grafana et Graylog tournent dans Docker, l'API de la PoC en est le premier service, et un modèle documenté permet d'ajouter un microservice."
+covers = ["R2", "R3", "R4", "R5", "R6"]
+after = [{ initiative = 1, needs = "la PoC validée : le socle Docker et CI de son epic 1 et l'API de recommandation comme premier service" }]
