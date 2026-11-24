@@ -1,1 +1,14 @@
 .v6-v7-migration-backup-*/
+
+# Build outputs
+target/
+node_modules/
+dist/
+.angular/
+
+# Generated code (from contracts/openapi)
+frontend/src/app/api/generated/
+
+# Secrets and local certificates
+.env
+infra/edge/certs/

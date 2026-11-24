@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: recommendation-service
+  mvc:
+    problemdetails:
+      enabled: true
+  threads:
+    virtual:
+      enabled: true
+
+server:
+  port: ${MEDHEAD_RECOMMENDATION_SERVICE_PORT:8080}
+  shutdown: graceful
+
+management:
+  server:
+    port: ${MEDHEAD_RECOMMENDATION_SERVICE_MANAGEMENT_PORT:8081}
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+logging:
+  structured:
+    format:
+      console: ecs
+    ecs:
+      service:
+        name: recommendation-service
+
+medhead:
+  recommendation-service:
+    specialties-file: ${MEDHEAD_RECOMMENDATION_SERVICE_SPECIALTIES_FILE:classpath:reference/specialties.json}
