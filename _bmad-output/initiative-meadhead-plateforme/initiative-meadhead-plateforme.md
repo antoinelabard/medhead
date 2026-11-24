@@ -5,7 +5,8 @@ sources:
   - specs/Exigences_pour_le_developpement_de_la_PoC.md
   - specs/Principes_de_l_architecture.md
   - specs/Document_de_definition_de_l_architecture.md
-companions: []
+companions:
+  - _bmad-output/initiative-meadhead-plateforme/architecture-meadhead-plateforme/architecture-meadhead-plateforme.md
 risk: medium
 ---
 
@@ -53,12 +54,14 @@ Les équipes MedHead peuvent ajouter de nouvelles fonctionnalités en microservi
 - principes — specs/Principes_de_l_architecture.md, B1, C3, C4
 - dda — specs/Document_de_definition_de_l_architecture.md, Objectifs, Architecture cible
 - initiative — _bmad-output/initiative-meadhead-poc/initiative-meadhead-poc.md
+- architecture — _bmad-output/initiative-meadhead-plateforme/architecture-meadhead-plateforme/architecture-meadhead-plateforme.md, AD-1 à AD-18 (adopté comme compagnon)
 
 ## Notes
 
 - Decision: 2026-11-16 — la préparation à la production est une initiative séparée sous cette initiative parente ; la PoC reste inchangée.
 - Decision: 2026-11-16 — passerelle API, IAM, base de données redondante, Grafana et Graylog sont réellement construits dans Docker.
 - Assumption: la seconde initiative démarre une fois la PoC validée, sur ses fondations (socle Docker et CI de l'epic 1, API de recommandation comme premier service).
-- Open question: environnement cible du socle de production — Docker Compose sur un hôte, Docker Swarm ou Kubernetes ? Attend l'architecture.
-- Open question: le socle de production est-il déployé par le pipeline vers un environnement réel, et lequel ?
-- Open question: Graylog sert-il seulement à la collecte des journaux ou aussi de SIEM (règles de détection, alertes de sécurité) ?
+- Decision: 2026-11-23 — environnement Docker Compose ; Kubernetes et GitOps reportés jusqu'à la validation de la PoC (architecture AD-14, Deferred).
+- Decision: 2026-11-23 — le pipeline publie les images dans GHCR sans déployer (architecture AD-14).
+- Decision: 2026-11-23 — Graylog en collecte centralisée avec alertes simples, sans SIEM complet (architecture AD-15).
+- Decision: 2026-11-24 — architecture adoptée comme compagnon.

@@ -5,7 +5,7 @@ id = 1
 slug = "epic-socle-plateforme"
 title = "Socle de la PoC livré en conteneurs par un pipeline GitHub"
 description = "Les squelettes Spring Boot et Angular se buildent en images Docker, démarrent ensemble en une commande, et chaque push ou PR déclenche un pipeline GitHub Actions (tests, build, images) qui archive ses rapports ; le readme décrit build, exécution, pipeline et workflow Gitflow."
-covers = ["R9", "R10", "R12"]
+covers = ["R4", "R9", "R10", "R12"]
 
 [[epic]]
 id = 2

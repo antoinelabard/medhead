@@ -11,6 +11,7 @@ sources:
   - _bmad-output/initiative-meadhead-plateforme/initiative-meadhead-plateforme.md
 companions:
   - specs/Données_de_référence_sur_les_spécialités_NHS.md
+  - _bmad-output/initiative-meadhead-plateforme/architecture-meadhead-plateforme/architecture-meadhead-plateforme.md
 risk: medium
 ---
 
@@ -27,7 +28,7 @@ Le comité d'architecture dispose d'une preuve fonctionnelle et mesurée qu'un s
 ## Requirements
 
 - R1 (exigences §Scénario, §Exigences): pour une spécialité et une localisation d'urgence, l'API REST renvoie l'hôpital le plus proche disposant d'au moins un lit disponible et offrant la spécialité ; le scénario Fred Brooks / Julia Crusher / Beverly Bashir propose Fred Brooks.
-- R2 (exigences §Scénario): quand un hôpital est recommandé, un événement de réservation de lit est publié et observable par un consommateur.
+- R2 (exigences §Scénario ; Decision 2026-11-23): quand un hôpital est recommandé, un événement de réservation de lit est publié et observable par un consommateur ; si le bus n'en accuse pas réception dans le délai, la recommandation est quand même renvoyée, marquée réservation non demandée, et une alerte est levée.
 - R3 (mission §Back-end, Points de vigilance): la proximité se mesure en distance réellement à parcourir, pas à vol d'oiseau ; un cas où le plus proche à vol d'oiseau n'est pas le plus proche par la route le démontre.
 - R4 (nhs): les spécialités sélectionnables sont celles des Données de référence NHS (groupe et spécialité) ; une spécialité hors liste est refusée avec une erreur explicite.
 - R5 (exigences §Exigences, interface ; Decision 2026-11-16): une page web unique permet de choisir une spécialité, de saisir la localisation en coordonnées GPS (ou via la géolocalisation du navigateur) et d'afficher l'hôpital recommandé renvoyé par l'API.
@@ -86,6 +87,7 @@ Le comité d'architecture dispose d'une preuve fonctionnelle et mesurée qu'un s
 - principes — specs/Principes_de_l_architecture.md, A3, B1 à B6, C3, C4
 - déclaration — specs/Declaration_des_travaux_d_architecture.md, Simplifications suggérées, Contenu de l'architecture, Prise en charge du continuum
 - dda — specs/Document_de_definition_de_l_architecture.md, Contraintes, Limites, Analyse de l'écart
+- architecture — _bmad-output/initiative-meadhead-plateforme/architecture-meadhead-plateforme/architecture-meadhead-plateforme.md, AD-1 à AD-18 (adopté comme compagnon)
 
 ## Notes
 
@@ -97,9 +99,11 @@ Le comité d'architecture dispose d'une preuve fonctionnelle et mesurée qu'un s
 - Decision: 2026-11-16 — aucun hôpital convenable : réponse explicite, aucun événement ; égalité départagée par le nombre de lits puis l'ordre alphabétique.
 - Decision: 2026-11-16 — dépôt d'architecture séparé pour les documents et le reporting.
 - Decision: 2026-11-16 — pas d'échéance fixe.
-- Decision: 2026-11-16 — confirmés : Spring Boot ; hôpitaux fictifs au Royaume-Uni incluant les trois du scénario ; objectifs métier (90 %, 18,25 → 12 min) non mesurés par la PoC, discutés dans le reporting ; tests de charge JMeter contre l'image Docker ; présentation au comité hors backlog.
+- Decision: 2026-11-16 — confirmés : Spring Boot ; hôpitaux fictifs incluant les trois du scénario ; objectifs métier (90 %, 18,25 → 12 min) non mesurés par la PoC, discutés dans le reporting ; tests de charge JMeter contre l'image Docker ; présentation au comité hors backlog.
 - Decision: 2026-11-23 — la PoC s'inscrit sous `initiative-meadhead-plateforme` ; supervision de performance (Prometheus, Grafana) ajoutée (R15), la preuve reste le rapport JMeter.
 - Decision: 2026-11-23 — découpage en 5 epics approuvé ; sécurité intégrée aux epics 2 et 3 ; tenue en charge en epic séparé (R8, R15) ; dépôt d'architecture rattaché à l'epic 5.
 - Decision: 2026-11-23 — le test de charge se lance hors CI ; chaque epic écrit sa propre section du readme, pour éviter les collisions entre les epics 3 et 4.
-- Open question: source des distances routières — service de routage externe ou service factice à distances pré-calculées ? Attend l'architecture.
-- Open question: bus d'événements réel (Kafka, RabbitMQ) ou publication simulée pour l'événement de réservation ? Attend l'architecture.
+- Decision: 2026-11-23 — hôpitaux fictifs situés dans le Grand Londres, zone de l'extrait OSRM (architecture AD-8) ; remplace « au Royaume-Uni ».
+- Decision: 2026-11-23 — distances routières par OSRM auto-hébergé (architecture AD-8) ; bus d'événements Apache Kafka (architecture AD-3).
+- Decision: 2026-11-23 — sans accusé du bus dans le délai, la recommandation est renvoyée marquée réservation non demandée, avec alerte (R2).
+- Decision: 2026-11-24 — architecture adoptée comme compagnon.

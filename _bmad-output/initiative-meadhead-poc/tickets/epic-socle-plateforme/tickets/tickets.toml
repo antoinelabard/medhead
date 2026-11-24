@@ -1,0 +1,90 @@
+# Stories de epic-socle-plateforme, dans l'ordre de construction.
+
+[[entry]]
+id = 1
+type = "story"
+title = "La liste des spécialités NHS s'affiche dans la page via edge en HTTPS"
+description = "Parcours traceur : monodépôt Maven et Angular 22, contrat OpenAPI de GET /api/v1/specialties avec code généré des deux côtés, contracts/reference/specialties.json tiré des données NHS, squelette hexagonal de recommendation-service, images frontend et recommendation-service, edge nginx avec certificat de développement généré par script, Compose profil app ; versions d'outillage épinglées."
+verify = "Après docker compose --profile app up, https://localhost affiche les spécialités NHS ; seul le port 443 est publié."
+covers = ["R4", "R5", "R6"]
+after = []
+hitl = true
+risk = "medium"
+notes = ["hitl : l'utilisateur accepte le certificat de développement dans son navigateur."]
+
+[[entry]]
+id = 2
+type = "story"
+title = "Chaque push et PR déclenche un pipeline qui teste, builde et publie ses rapports"
+description = "Workflow GitHub Actions sur push et pull_request de toutes les branches : étapes distinctes tests Java (JUnit Jupiter), tests Angular (Vitest), build des images ; rapports de tests publiés en artefacts et résumés dans l'exécution."
+verify = "Une PR de test montre les étapes tests, build et images, et ses rapports sont consultables depuis l'onglet Actions."
+covers = ["R1"]
+after = [1]
+hitl = false
+risk = "medium"
+
+[[entry]]
+id = 3
+type = "story"
+title = "hospital-registry démarre en squelette hexagonal avec ses sondes"
+description = "Second service Spring Boot hexagonal : Actuator et métriques sur 8081, journaux ECS, sondes liveness et readiness, image non root, healthcheck Compose ; ajouté au pipeline (tests et image)."
+verify = "docker compose ps montre hospital-registry healthy ; ses journaux sont en ECS ; le pipeline construit son image."
+covers = ["R5", "R6"]
+after = [1, 2]
+hitl = false
+risk = "low"
+
+[[entry]]
+id = 4
+type = "story"
+title = "Kafka démarre avec ses cinq topics déclarés"
+description = "Kafka 4.4.0 en KRaft un nœud sur le réseau backend, auto-création désactivée, infra/kafka/topics.yaml avec les 5 topics de l'architecture (compaction, partitions, rétention), service kafka-init qui les crée avant les services."
+verify = "Après le démarrage, la liste des topics et leur configuration correspondent à topics.yaml ; Kafka n'est pas joignable depuis l'hôte."
+covers = ["R5"]
+after = [3]
+hitl = false
+risk = "low"
+
+[[entry]]
+id = 5
+type = "story"
+title = "Les images sont publiées dans GHCR depuis develop et main"
+description = "Étape du pipeline réservée à develop et main : connexion à GHCR avec GITHUB_TOKEN, publication de chaque image étiquetée version et sha-<court>, jamais latest."
+verify = "Après un merge sur develop, le registre GHCR du dépôt contient les images avec les deux étiquettes."
+covers = ["R2"]
+after = [3]
+hitl = false
+risk = "low"
+
+[[entry]]
+id = 6
+type = "story"
+title = "main et develop n'acceptent que des PR à CI verte"
+description = "Protections de branches GitHub pour Gitflow : push direct interdit sur main et develop, PR obligatoire, statut du pipeline requis ; commandes gh préparées par l'agent, appliquées par l'utilisateur."
+verify = "Un push direct sur develop est refusé et une PR à CI rouge ne peut pas être fusionnée."
+covers = ["R7"]
+after = [2]
+hitl = true
+risk = "low"
+
+[[entry]]
+id = 7
+type = "story"
+title = "Le readme explique build, exécution, tests, pipeline et Gitflow"
+description = "readme.md racine : prérequis, démarrage Compose et certificat, exécution des tests, fonctionnement du pipeline et de GHCR, règles Gitflow réutilisables (branches, nommage, PR, protections), une section par epic à compléter par les suivants."
+verify = "Un développeur qui suit uniquement le readme démarre la PoC, lance les tests et sait comment proposer un changement."
+covers = ["R3"]
+after = [4, 5, 6]
+hitl = false
+risk = "low"
+
+[[entry]]
+id = 8
+type = "story"
+title = "Refactor sweep"
+description = "Nettoyage seul, à partir des plans et des retours de revue différés par les autres stories de l'epic ; tout ajout de périmètre devient une nouvelle story."
+verify = "Le pipeline reste vert et les éléments différés listés au démarrage sont traités ou explicitement reportés."
+covers = []
+after = [1, 2, 3, 4, 5, 6, 7]
+hitl = false
+risk = "low"
