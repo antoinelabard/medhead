@@ -1,0 +1,7 @@
+{
+  "ngVersion": "22.3.0",
+  "providedIn": "root",
+  "fileNaming": "kebab-case",
+  "stringEnums": true,
+  "supportsES6": true
+}

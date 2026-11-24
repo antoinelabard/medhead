@@ -1,0 +1,402 @@
+[
+  {
+    "code": "anaesthetics",
+    "group": "Anesthésie",
+    "label": "Anesthésie"
+  },
+  {
+    "code": "intensive-care-medicine",
+    "group": "Anesthésie",
+    "label": "Soins intensifs"
+  },
+  {
+    "code": "clinical-oncology",
+    "group": "Oncologie clinique",
+    "label": "Oncologie clinique"
+  },
+  {
+    "code": "additional-dental-specialties",
+    "group": "Groupe dentaire",
+    "label": "Spécialités dentaires supplémentaires"
+  },
+  {
+    "code": "dental-and-maxillofacial-radiology",
+    "group": "Groupe dentaire",
+    "label": "Radiologie dentaire et maxillo-faciale"
+  },
+  {
+    "code": "endodontics",
+    "group": "Groupe dentaire",
+    "label": "Endodontie"
+  },
+  {
+    "code": "oral-and-maxillofacial-surgery",
+    "group": "Groupe dentaire",
+    "label": "Chirurgie buccale et maxillo-faciale"
+  },
+  {
+    "code": "oral-and-maxillofacial-pathology",
+    "group": "Groupe dentaire",
+    "label": "Pathologie buccale et maxillo-faciale"
+  },
+  {
+    "code": "oral-medicine",
+    "group": "Groupe dentaire",
+    "label": "Médecine buccale"
+  },
+  {
+    "code": "oral-surgery",
+    "group": "Groupe dentaire",
+    "label": "Chirurgie buccale"
+  },
+  {
+    "code": "orthodontics",
+    "group": "Groupe dentaire",
+    "label": "Orthodontie"
+  },
+  {
+    "code": "paediatric-dentistry",
+    "group": "Groupe dentaire",
+    "label": "Dentisterie pédiatrique"
+  },
+  {
+    "code": "periodontics",
+    "group": "Groupe dentaire",
+    "label": "Parodontie"
+  },
+  {
+    "code": "prosthodontics",
+    "group": "Groupe dentaire",
+    "label": "Prosthodontie"
+  },
+  {
+    "code": "restorative-dentistry",
+    "group": "Groupe dentaire",
+    "label": "Dentisterie restauratrice"
+  },
+  {
+    "code": "special-care-dentistry",
+    "group": "Groupe dentaire",
+    "label": "Dentisterie de soins spéciaux"
+  },
+  {
+    "code": "emergency-medicine",
+    "group": "Médecine d'urgence",
+    "label": "Médecine d'urgence"
+  },
+  {
+    "code": "acute-internal-medicine",
+    "group": "Groupe de médecine générale",
+    "label": "Médecine interne de soins aigus"
+  },
+  {
+    "code": "allergy",
+    "group": "Groupe de médecine générale",
+    "label": "Allergie"
+  },
+  {
+    "code": "audiovestibular-medicine",
+    "group": "Groupe de médecine générale",
+    "label": "Médecine audiovestibulaire"
+  },
+  {
+    "code": "cardiology",
+    "group": "Groupe de médecine générale",
+    "label": "Cardiologie"
+  },
+  {
+    "code": "clinical-genetics",
+    "group": "Groupe de médecine générale",
+    "label": "Génétique clinique"
+  },
+  {
+    "code": "clinical-neurophysiology",
+    "group": "Groupe de médecine générale",
+    "label": "Neurophysiologie clinique"
+  },
+  {
+    "code": "clinical-pharmacology-and-therapeutics",
+    "group": "Groupe de médecine générale",
+    "label": "Pharmacologie clinique et thérapeutique"
+  },
+  {
+    "code": "dermatology",
+    "group": "Groupe de médecine générale",
+    "label": "Dermatologie"
+  },
+  {
+    "code": "endocrinology-and-diabetes-mellitus",
+    "group": "Groupe de médecine générale",
+    "label": "Endocrinologie et diabète sucré"
+  },
+  {
+    "code": "gastroenterology",
+    "group": "Groupe de médecine générale",
+    "label": "Gastroentérologie"
+  },
+  {
+    "code": "general-internal-medicine",
+    "group": "Groupe de médecine générale",
+    "label": "Médecine générale (interne)"
+  },
+  {
+    "code": "general-medicine",
+    "group": "Groupe de médecine générale",
+    "label": "Médecine générale"
+  },
+  {
+    "code": "general-practice-gp-6-month-training",
+    "group": "Groupe de médecine générale",
+    "label": "Médecine générale (GP) 6 mois"
+  },
+  {
+    "code": "genitourinary-medicine",
+    "group": "Groupe de médecine générale",
+    "label": "Médecine génito-urinaire"
+  },
+  {
+    "code": "geriatric-medicine",
+    "group": "Groupe de médecine générale",
+    "label": "Médecine gériatrique"
+  },
+  {
+    "code": "infectious-diseases",
+    "group": "Groupe de médecine générale",
+    "label": "Maladies infectieuses"
+  },
+  {
+    "code": "medical-oncology",
+    "group": "Groupe de médecine générale",
+    "label": "Oncologie médicale"
+  },
+  {
+    "code": "medical-ophthalmology",
+    "group": "Groupe de médecine générale",
+    "label": "Ophtalmologie médicale"
+  },
+  {
+    "code": "neurology",
+    "group": "Groupe de médecine générale",
+    "label": "Neurologie"
+  },
+  {
+    "code": "occupational-medicine",
+    "group": "Groupe de médecine générale",
+    "label": "Médecine du travail"
+  },
+  {
+    "code": "other",
+    "group": "Groupe de médecine générale",
+    "label": "Autre"
+  },
+  {
+    "code": "palliative-medicine",
+    "group": "Groupe de médecine générale",
+    "label": "Médecine palliative"
+  },
+  {
+    "code": "rehabilitation-medicine",
+    "group": "Groupe de médecine générale",
+    "label": "Médecine de réadaptation"
+  },
+  {
+    "code": "renal-medicine",
+    "group": "Groupe de médecine générale",
+    "label": "Médecine rénale"
+  },
+  {
+    "code": "respiratory-medicine",
+    "group": "Groupe de médecine générale",
+    "label": "Médecine respiratoire"
+  },
+  {
+    "code": "rheumatology",
+    "group": "Groupe de médecine générale",
+    "label": "Rhumatologie"
+  },
+  {
+    "code": "sport-and-exercise-medicine",
+    "group": "Groupe de médecine générale",
+    "label": "Médecine du sport et de l'exercice"
+  },
+  {
+    "code": "sexual-and-reproductive-health",
+    "group": "Obstétrique et gynécologie",
+    "label": "Santé publique sexuelle et procréative"
+  },
+  {
+    "code": "paediatric-cardiology",
+    "group": "Groupe pédiatrique",
+    "label": "Cardiologie pédiatrique"
+  },
+  {
+    "code": "paediatrics",
+    "group": "Groupe pédiatrique",
+    "label": "Pédiatrie"
+  },
+  {
+    "code": "chemical-pathology",
+    "group": "Groupe de pathologie",
+    "label": "Pathologie chimique"
+  },
+  {
+    "code": "diagnostic-neuropathology",
+    "group": "Groupe de pathologie",
+    "label": "Neuropathologie diagnostique"
+  },
+  {
+    "code": "forensic-histopathology",
+    "group": "Groupe de pathologie",
+    "label": "Histopathologie médico-légale"
+  },
+  {
+    "code": "general-pathology",
+    "group": "Groupe de pathologie",
+    "label": "Pathologie générale"
+  },
+  {
+    "code": "haematology",
+    "group": "Groupe de pathologie",
+    "label": "Hématologie"
+  },
+  {
+    "code": "histopathology",
+    "group": "Groupe de pathologie",
+    "label": "Histopathologie"
+  },
+  {
+    "code": "immunology",
+    "group": "Groupe de pathologie",
+    "label": "Immunologie"
+  },
+  {
+    "code": "medical-microbiology",
+    "group": "Groupe de pathologie",
+    "label": "Microbiologie médicale"
+  },
+  {
+    "code": "paediatric-and-perinatal-pathology",
+    "group": "Groupe de pathologie",
+    "label": "Pathologie pédiatrique et périnatale"
+  },
+  {
+    "code": "virology",
+    "group": "Groupe de pathologie",
+    "label": "Virologie"
+  },
+  {
+    "code": "community-health-service-dental",
+    "group": "Groupe Pronostics et gestion de la santé/Santé communautaire",
+    "label": "Service de santé communautaire dentaire"
+  },
+  {
+    "code": "community-health-service-medical",
+    "group": "Groupe Pronostics et gestion de la santé/Santé communautaire",
+    "label": "Service de santé communautaire médicale"
+  },
+  {
+    "code": "dental-public-health",
+    "group": "Groupe Pronostics et gestion de la santé/Santé communautaire",
+    "label": "Santé publique dentaire"
+  },
+  {
+    "code": "general-dental-practice",
+    "group": "Groupe Pronostics et gestion de la santé/Santé communautaire",
+    "label": "Pratique de l'art dentaire"
+  },
+  {
+    "code": "public-health-medicine",
+    "group": "Groupe Pronostics et gestion de la santé/Santé communautaire",
+    "label": "Santé publique"
+  },
+  {
+    "code": "child-and-adolescent-psychiatry",
+    "group": "Groupe de psychiatrie",
+    "label": "Psychiatrie infantile et adolescente"
+  },
+  {
+    "code": "forensic-psychiatry",
+    "group": "Groupe de psychiatrie",
+    "label": "Psychiatrie légale"
+  },
+  {
+    "code": "general-psychiatry",
+    "group": "Groupe de psychiatrie",
+    "label": "Psychiatrie générale"
+  },
+  {
+    "code": "old-age-psychiatry",
+    "group": "Groupe de psychiatrie",
+    "label": "Psychiatrie de la vieillesse"
+  },
+  {
+    "code": "psychiatry-of-learning-disability",
+    "group": "Groupe de psychiatrie",
+    "label": "Psychiatrie des troubles d'apprentissage"
+  },
+  {
+    "code": "psychotherapy",
+    "group": "Groupe de psychiatrie",
+    "label": "Psychothérapie"
+  },
+  {
+    "code": "clinical-radiology",
+    "group": "Groupe de radiologie",
+    "label": "Radiologie clinique"
+  },
+  {
+    "code": "nuclear-medicine",
+    "group": "Groupe de radiologie",
+    "label": "Médecine nucléaire"
+  },
+  {
+    "code": "cardiothoracic-surgery",
+    "group": "Groupe chirurgical",
+    "label": "Chirurgie cardiothoracique"
+  },
+  {
+    "code": "general-surgery",
+    "group": "Groupe chirurgical",
+    "label": "Chirurgie générale"
+  },
+  {
+    "code": "neurosurgery",
+    "group": "Groupe chirurgical",
+    "label": "Neurochirurgie"
+  },
+  {
+    "code": "ophthalmology",
+    "group": "Groupe chirurgical",
+    "label": "Ophtalmologie"
+  },
+  {
+    "code": "otolaryngology",
+    "group": "Groupe chirurgical",
+    "label": "Otolaryngologie"
+  },
+  {
+    "code": "paediatric-surgery",
+    "group": "Groupe chirurgical",
+    "label": "Chirurgie pédiatrique"
+  },
+  {
+    "code": "plastic-surgery",
+    "group": "Groupe chirurgical",
+    "label": "Chirurgie plastique"
+  },
+  {
+    "code": "trauma-and-orthopaedic-surgery",
+    "group": "Groupe chirurgical",
+    "label": "Traumatologie et chirurgie orthopédique"
+  },
+  {
+    "code": "urology",
+    "group": "Groupe chirurgical",
+    "label": "Urologie"
+  },
+  {
+    "code": "vascular-surgery",
+    "group": "Groupe chirurgical",
+    "label": "Chirurgie vasculaire"
+  }
+]

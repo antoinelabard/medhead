@@ -1,0 +1,13 @@
+**/target/
+**/node_modules/
+**/dist/
+**/.angular/
+frontend/src/app/api/generated/
+.env
+.git/
+.idea/
+_bmad/
+_bmad-output/
+.agents/
+.claude/
+.v6-v7-migration-backup-*/
