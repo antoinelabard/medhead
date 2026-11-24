@@ -112,7 +112,7 @@ Le DTO généré est converti depuis `domain/Specialty` dans l'adaptateur entran
 **Commands:**
 - `./mvnw -B verify` -- expected: BUILD SUCCESS, tests verts
 - `cd frontend && npm ci && npx ng test --watch=false && npx ng build` -- expected: tests verts, build OK
-- `./infra/edge/generate-dev-cert.sh && docker compose --profile app up -d --build --wait` -- expected: conteneurs healthy
+- `docker compose --profile app up -d --build --wait` -- expected: conteneurs healthy (certificat généré par `edge-cert`)
 - `curl -sk https://localhost/api/v1/specialties | jq length` -- expected: égal au nombre d'entrées de `specialties.json`
 - `curl -sk -o /dev/null -w '%{http_code}' https://localhost/actuator/health` -- expected: 404
 - `docker compose ps --format '{{.Name}} {{.Ports}}'` -- expected: seul `edge` avec `0.0.0.0:443`

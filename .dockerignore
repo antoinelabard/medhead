@@ -3,7 +3,6 @@
 **/dist/
 **/.angular/
 frontend/src/app/api/generated/
-infra/edge/certs/
 .env
 .git/
 .idea/

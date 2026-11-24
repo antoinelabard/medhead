@@ -9,6 +9,5 @@ dist/
 # Generated code (from contracts/openapi)
 frontend/src/app/api/generated/
 
-# Secrets and local certificates
+# Secrets
 .env
-infra/edge/certs/
