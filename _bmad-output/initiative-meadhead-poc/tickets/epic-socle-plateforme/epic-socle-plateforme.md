@@ -62,3 +62,5 @@ Les développeurs de la PoC disposent dès le premier jour d'un dépôt qui se b
 - Decision: 2026-11-24 — parcours traceur `GET /api/v1/specialties` de bout en bout, endpoint public (données de référence non sensibles).
 - Decision: 2026-11-24 — protections de branches : story faite par l'utilisateur, préparée avec `gh`.
 - Decision: 2026-11-24 — hors epic : Prometheus et Grafana, PostgreSQL et Keycloak, test de charge.
+- Decision: 2026-11-24 — 8 stories approuvées ; tracer bullet = story 1 (liste des spécialités via edge en HTTPS), puis story 2 (pipeline), la moins certaine.
+- Decision: 2026-11-24 — séquencement : 3 attend 2 (ajout au pipeline), 4 attend 3 (Compose) ; 4 et 5 parallèles après 3 ; 6 dès 2 ; refactor sweep en clôture.
