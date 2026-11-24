@@ -3,7 +3,8 @@ type: initiative
 title: "Les nouveaux microservices s'ajoutent sur un socle sécurisé, redondant et supervisé"
 sources:
   - _bmad-output/initiative-meadhead-plateforme/initiative-meadhead-plateforme.md
-companions: []
+companions:
+  - _bmad-output/initiative-meadhead-plateforme/architecture-meadhead-plateforme/architecture-meadhead-plateforme.md
 risk: medium
 ---
 
@@ -32,9 +33,10 @@ Les équipes MedHead ajoutent de nouvelles fonctionnalités en microservices san
 
 - parent — _bmad-output/initiative-meadhead-plateforme/initiative-meadhead-plateforme.md, Requirements R2–R6
 - initiative — _bmad-output/initiative-meadhead-poc/initiative-meadhead-poc.md
+- architecture — _bmad-output/initiative-meadhead-plateforme/architecture-meadhead-plateforme/architecture-meadhead-plateforme.md, AD-1 à AD-18 et Deferred
 
 ## Notes
 
-- Open question: environnement cible — Docker Compose sur un hôte, Docker Swarm ou Kubernetes ? Attend l'architecture.
-- Open question: déploiement réel par le pipeline, et vers quel environnement ?
-- Open question: Graylog en simple collecte des journaux ou en SIEM (règles de détection, alertes) ?
+- Decision: 2026-11-23 — Docker Compose ; Kubernetes et GitOps reportés (architecture Deferred).
+- Decision: 2026-11-23 — pas de déploiement réel par le pipeline pour l'instant (architecture AD-14).
+- Decision: 2026-11-23 — Graylog sans SIEM complet (architecture AD-15).
